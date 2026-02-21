@@ -8,6 +8,16 @@ namespace RPG {
             Idle,
             Move,
             Jump,
+            Attack,
+            Length,
+        }
+
+        public enum EAttackCombo {
+            None = -1,
+            Combo1,
+            Combo2,
+            Combo3,
+            Combo4,
             Length,
         }
 
@@ -16,10 +26,26 @@ namespace RPG {
         [SerializeField] private UnityEvent<EState> _onStateChanged;
         private CharacterController _characterController;
         public bool IsGrounded { get; private set; }
+        private PlayerAnimationController _animationController;
+        public EAttackCombo NextAttackCombo { get; private set; } = EAttackCombo.None;
+        private WeaponController _weaponController;
 
         private void Awake() {
             if (_characterController == null) {
                 _characterController = GetComponent<CharacterController>();
+            }
+
+            if (_animationController == null) {
+                _animationController = GetComponentInChildren<PlayerAnimationController>();
+            }
+
+            PlayerAttackState attackState = GetComponent<PlayerAttackState>();
+            if (attackState != null) {
+                attackState.SubscribeOnAttackEnd(OnAttackEnd);
+            }
+
+            if (_weaponController == null) {
+                _weaponController = GetComponentInChildren<WeaponController>();
             }
         }
 
@@ -29,6 +55,33 @@ namespace RPG {
 
         private void Update() {
             if (_state == EState.Jump) {
+                return;
+            }
+
+            if (InputManager.IsAttack) {
+                if (_state != EState.Attack && _weaponController.IsWeaponAttached) {
+                    NextAttackCombo = EAttackCombo.Combo1;
+                    SetState(EState.Attack);
+                    _animationController.SetAttackComboState((int)NextAttackCombo);
+                    return;
+                }
+
+                AnimatorStateInfo currentAnimationState = _animationController.GetCurrentStateInfo();
+
+                if (currentAnimationState.IsName("AttackCombo1")) {
+                    NextAttackCombo = EAttackCombo.Combo2;
+                } else if (currentAnimationState.IsName("AttackCombo2")) {
+                    NextAttackCombo = EAttackCombo.Combo3;
+                } else if (currentAnimationState.IsName("AttackCombo3")) {
+                    NextAttackCombo = EAttackCombo.Combo4;
+                } else {
+                    NextAttackCombo = EAttackCombo.None;
+                }
+
+                return;
+            }
+
+            if (_state == EState.Attack) {
                 return;
             }
 
@@ -61,6 +114,12 @@ namespace RPG {
 
         private void OnAnimatorMove() {
             IsGrounded = _characterController.isGrounded;
+        }
+
+        private void OnAttackEnd() {
+            NextAttackCombo = EAttackCombo.None;
+            SetState(EState.Idle);
+            _animationController.SetAttackComboState((int)NextAttackCombo);
         }
     }
 }

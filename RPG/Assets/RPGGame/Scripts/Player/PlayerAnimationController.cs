@@ -21,5 +21,13 @@ namespace RPG {
         public void OnLanding() {
             _refAnimator.SetTrigger("Landing");
         }
+
+        public void SetAttackComboState(int attackCombo) {
+            _refAnimator.SetInteger("AttackCombo", attackCombo);
+        }
+
+        public AnimatorStateInfo GetCurrentStateInfo() {
+            return _refAnimator.GetCurrentAnimatorStateInfo(0);
+        }
     }
 }
