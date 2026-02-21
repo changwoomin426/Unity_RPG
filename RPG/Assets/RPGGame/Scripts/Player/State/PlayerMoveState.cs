@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RPG {
     public class PlayerMoveState : PlayerStateBase {
-        [SerializeField] private float _rotationSpeed = 540f;
+        // [SerializeField] private float _rotationSpeed = 540f;
 
         protected override void Update() {
             base.Update();
@@ -14,7 +14,7 @@ namespace RPG {
 
             if (direction != Vector3.zero) {
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
-                _refTransform.rotation = Quaternion.RotateTowards(_refTransform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+                _refTransform.rotation = Quaternion.RotateTowards(_refTransform.rotation, targetRotation, _data.rotationSpeed * Time.deltaTime);
             }
         }
 

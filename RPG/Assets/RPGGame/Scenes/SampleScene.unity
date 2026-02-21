@@ -280,6 +280,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ellen_Staff_Swish03
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 1ec47ea20a5da894fb197328ca705bf5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 1ec47ea20a5da894fb197328ca705bf5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -662,7 +666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d8ee22dedf449288072bcea67dada5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 540
 --- !u!114 &366270415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,6 +711,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _data: {fileID: 0}
 --- !u!114 &366270417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,9 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a96ab0ce7787c418b9a5813f1b13ce2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpPower: 8
   _verticalSpeed: 0
-  _gravityInJump: 10
   _moveSpeed: 5
   _onJumpEnd:
     m_PersistentCalls:
@@ -1629,6 +1631,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ellen_Staff_Swish02
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 80b619c9fed1e3945a48aa40f8639407, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 80b619c9fed1e3945a48aa40f8639407, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -1707,6 +1713,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08964d6c11212441abffe9aebaf08bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1781093791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1781093793}
+  - component: {fileID: 1781093792}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1781093792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781093791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f77ea988bf784cd88e42116f172e369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1781093793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781093791}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1809956548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1789,6 +1839,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 3258ac576c7b9134ab8958477ba169cd, type: 3}
       propertyPath: m_Name
       value: Ellen_Staff_Swish01
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 3258ac576c7b9134ab8958477ba169cd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3258ac576c7b9134ab8958477ba169cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1973,6 +2027,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ellen_Staff_Swish04
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 11c087975cd488d4d89b7d258ab2958a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 11c087975cd488d4d89b7d258ab2958a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -2062,3 +2120,4 @@ SceneRoots:
   - {fileID: 1337236524}
   - {fileID: 297648601}
   - {fileID: 1377800648}
+  - {fileID: 1781093793}

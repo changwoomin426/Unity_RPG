@@ -24,6 +24,7 @@ namespace RPG {
         [SerializeField] private EState _state = EState.None;
         [SerializeField] private PlayerStateBase[] _states;
         [SerializeField] private UnityEvent<EState> _onStateChanged;
+        [SerializeField] private PlayerData _data;
         private CharacterController _characterController;
         public bool IsGrounded { get; private set; }
         private PlayerAnimationController _animationController;
@@ -31,6 +32,9 @@ namespace RPG {
         private WeaponController _weaponController;
 
         private void Awake() {
+            // _data = Resources.Load("Data/Player Data") as PlayerData;
+            _data = DataManager.Instance.playerData;
+
             if (_characterController == null) {
                 _characterController = GetComponent<CharacterController>();
             }
@@ -46,6 +50,12 @@ namespace RPG {
 
             if (_weaponController == null) {
                 _weaponController = GetComponentInChildren<WeaponController>();
+            }
+
+            for (int ix = 0; ix < _states.Length; ++ix) {
+                if (_data != null) {
+                    _states[ix].SetData(_data);
+                }
             }
         }
 

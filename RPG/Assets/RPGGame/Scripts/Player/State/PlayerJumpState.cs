@@ -3,15 +3,16 @@ using UnityEngine.Events;
 
 namespace RPG {
     public class PlayerJumpState : PlayerStateBase {
-        [SerializeField] private float _jumpPower = 8f;
+        // [SerializeField] private float _jumpPower = 8f;
         [SerializeField] private float _verticalSpeed = 0f;
-        [SerializeField] private float _gravityInJump = 10f;
+        // [SerializeField] private float _gravityInJump = 10f;
         [SerializeField] private float _moveSpeed = 5f;
         [SerializeField] private UnityEvent _onJumpEnd;
 
         protected override void OnEnable() {
             base.OnEnable();
-            _verticalSpeed = _jumpPower;
+            // _verticalSpeed = _jumpPower;
+            _verticalSpeed = _data.jumpPower;
         }
 
         protected override void Update() {
@@ -22,7 +23,7 @@ namespace RPG {
                 _manager.SetState(PlayerStateManager.EState.Idle);
             } else {
                 if (_verticalSpeed > 0f) {
-                    _verticalSpeed -= _gravityInJump * Time.deltaTime;
+                    _verticalSpeed -= _data.gravityInJump * Time.deltaTime;
                 }
 
                 if (Mathf.Approximately(_verticalSpeed, 0f)) {

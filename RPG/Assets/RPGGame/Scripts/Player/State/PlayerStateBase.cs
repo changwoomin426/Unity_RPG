@@ -7,6 +7,7 @@ namespace RPG {
         protected Animator _refAnimator;
         protected PlayerStateManager _manager;
         protected PlayerAnimationController _animationController;
+        protected PlayerData _data;
 
         protected virtual void OnEnable() {
             if (_refTransform == null) {
@@ -38,6 +39,10 @@ namespace RPG {
 
         protected virtual void OnAnimatorMove() {
             _characterController.Move(_refAnimator.deltaPosition);
+        }
+
+        public void SetData(PlayerData data) {
+            _data = data;
         }
     }
 }
