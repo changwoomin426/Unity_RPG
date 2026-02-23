@@ -5,6 +5,11 @@ namespace RPG {
         protected override void Update() {
             base.Update();
 
+            if (_manager.IsPlayerDead) {
+                _manager.SetState(MonsterStateManager.EState.Idle);
+                return;
+            }
+
             if (Vector3.Distance(_refTransform.position, _manager.PlayerTransform.position) <= _data.attackRange) {
                 _manager.SetState(MonsterStateManager.EState.Attack);
             }

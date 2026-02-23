@@ -9,6 +9,7 @@ namespace RPG {
             Move,
             Jump,
             Attack,
+            Dead,
             Length,
         }
 
@@ -31,9 +32,20 @@ namespace RPG {
         public EAttackCombo NextAttackCombo { get; private set; } = EAttackCombo.None;
         private WeaponController _weaponController;
 
+        private int _level = 1;
+        public PlayerData.LevelData CurrentLevelData { get; private set; }
+        public bool IsPlayerDead { get { return _state == EState.Dead; } }
+
         private void Awake() {
             // _data = Resources.Load("Data/Player Data") as PlayerData;
             _data = DataManager.Instance.playerData;
+            CurrentLevelData = _data.levels[_level - 1];
+
+            HPController hpController = GetComponentInChildren<HPController>();
+            if (hpController != null) {
+                hpController.SubscribeOnDead(OnPlayerDead);
+                hpController.SetMaxHP(CurrentLevelData.maxHP);
+            }
 
             if (_characterController == null) {
                 _characterController = GetComponent<CharacterController>();
@@ -64,6 +76,10 @@ namespace RPG {
         }
 
         private void Update() {
+            if (IsPlayerDead) {
+                return;
+            }
+
             if (_state == EState.Jump) {
                 return;
             }
@@ -109,7 +125,7 @@ namespace RPG {
         }
 
         public void SetState(EState newState) {
-            if (_state == newState) {
+            if (_state == newState || IsPlayerDead) {
                 return;
             }
 
@@ -130,6 +146,11 @@ namespace RPG {
             NextAttackCombo = EAttackCombo.None;
             SetState(EState.Idle);
             _animationController.SetAttackComboState((int)NextAttackCombo);
+        }
+
+        public void OnPlayerDead() {
+            // Util.LogRed("플레이어 죽음");
+            SetState(EState.Dead);
         }
     }
 }

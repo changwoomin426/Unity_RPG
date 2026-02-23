@@ -10,6 +10,7 @@ namespace RPG {
             Patrol,
             Chase,
             Attack,
+            Dead,
             Length,
         }
 
@@ -18,9 +19,11 @@ namespace RPG {
         [SerializeField] private UnityEvent<EState> _onStateChanged;
         [SerializeField] private MonsterData _data;
         private Transform _refTransform;
+        private PlayerStateManager _targetPlayerStateManager;
         [SerializeField] private int _level = 1;
         public MonsterData.LevelData CurrentLevelData { get; private set; }
         public Transform PlayerTransform { get; private set; }
+        public bool IsPlayerDead { get { return _targetPlayerStateManager.IsPlayerDead; } }
 
         private void Awake() {
             _data = DataManager.Instance.monsterData;
@@ -43,6 +46,7 @@ namespace RPG {
 
             if (PlayerTransform == null) {
                 PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform.root;
+                _targetPlayerStateManager = PlayerTransform.GetComponent<PlayerStateManager>();
             }
 
             HPController hpController = GetComponentInChildren<HPController>();
@@ -51,6 +55,11 @@ namespace RPG {
                 hpController.SetDefense(CurrentLevelData.defense);
                 hpController.SubscribeOnDead(OnMonsterDead);
             }
+
+            MonsterAttackController attackController = GetComponentInChildren<MonsterAttackController>();
+            if (attackController != null) {
+                attackController.SetAttack(CurrentLevelData.attack);
+            }
         }
 
         private void OnEnable() {
@@ -58,6 +67,10 @@ namespace RPG {
         }
 
         private void Update() {
+            if (_state == EState.Dead || IsPlayerDead) {
+                return;
+            }
+
             if (_state == EState.Idle || _state == EState.Patrol) {
                 if (Util.IsInSight(_refTransform, PlayerTransform, _data.sightAngle, _data.attackRange)) {
                     SetState(EState.Chase);
@@ -74,7 +87,7 @@ namespace RPG {
         }
 
         public void SetState(EState newState) {
-            if (_state == newState) {
+            if (_state == newState || _state == EState.Dead) {
                 return;
             }
 
@@ -97,7 +110,8 @@ namespace RPG {
         }
 
         public void OnMonsterDead() {
-            Util.LogRed("몬스터 죽음.");
+            // Util.LogRed("몬스터 죽음.");
+            SetState(EState.Dead);
         }
     }
 }

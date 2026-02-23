@@ -8,6 +8,12 @@ namespace RPG {
 
         protected override void Update() {
             base.Update();
+
+            if (_manager.IsPlayerDead) {
+                _manager.SetState(MonsterStateManager.EState.Idle);
+                return;
+            }
+
             Vector3 direction = _manager.PlayerTransform.position - _refTransform.position;
             direction.y = 0f;
             _refTransform.rotation = Quaternion.LookRotation(direction);

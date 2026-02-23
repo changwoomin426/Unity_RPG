@@ -12,7 +12,6 @@ namespace RPG {
         public void SetMaxHP(float maxHP) {
             _maxHP = maxHP;
             _currentHP = maxHP;
-
             _onHPChanged?.Invoke(_currentHP, maxHP);
         }
 

@@ -23,5 +23,9 @@ namespace RPG {
 
             _refAnimator.SetInteger("State", (int)state);
         }
+
+        public void OnDamaged() {
+            _refAnimator.SetTrigger("Hit");
+        }
     }
 }
