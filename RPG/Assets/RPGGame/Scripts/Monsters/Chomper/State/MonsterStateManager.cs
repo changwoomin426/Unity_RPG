@@ -44,6 +44,13 @@ namespace RPG {
             if (PlayerTransform == null) {
                 PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform.root;
             }
+
+            HPController hpController = GetComponentInChildren<HPController>();
+            if (hpController != null) {
+                hpController.SetMaxHP(CurrentLevelData.maxHP);
+                hpController.SetDefense(CurrentLevelData.defense);
+                hpController.SubscribeOnDead(OnMonsterDead);
+            }
         }
 
         private void OnEnable() {
@@ -87,6 +94,10 @@ namespace RPG {
         public void SetLevel(int level) {
             _level = level;
             CurrentLevelData = _data.levels[level - 1];
+        }
+
+        public void OnMonsterDead() {
+            Util.LogRed("몬스터 죽음.");
         }
     }
 }

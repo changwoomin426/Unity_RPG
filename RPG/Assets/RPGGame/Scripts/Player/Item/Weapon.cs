@@ -18,6 +18,36 @@ namespace RPG {
             }
         }
 
+        private void FixedUpdate() {
+            if (!_isInAttack) {
+                return;
+            }
+
+            Collider[] colliders = Physics.OverlapCapsule(
+                _attackPoints[0].position,
+                _attackPoints[1].position,
+                _radius,
+                 _attackTargetLayer
+                 );
+
+            if (colliders.Length == 0) {
+                return;
+            }
+
+            foreach (Collider collider in colliders) {
+                // Util.LogRed("무기와 충돌함");
+                Damageable damageable = collider.GetComponent<Damageable>();
+                if (damageable != null) {
+                    damageable.ReceiveDamage(_attackAmount);
+                }
+
+                if (_hitParticle != null) {
+                    _hitParticle.transform.position = collider.transform.position;
+                    _hitParticle.Play();
+                }
+            }
+        }
+
         protected override void OnCollect(Collider other) {
             // base.OnCollect(other);
 
