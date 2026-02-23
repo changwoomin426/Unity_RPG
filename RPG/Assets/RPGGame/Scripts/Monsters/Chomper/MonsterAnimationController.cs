@@ -6,7 +6,7 @@ namespace RPG {
 
         private void Awake() {
             if (_refAnimator == null) {
-                _refAnimator = GetComponentInChildren<Animator>();
+                _refAnimator = GetComponentInParent<Animator>();
             }
 
             MonsterStateManager manager = GetComponentInParent<MonsterStateManager>();

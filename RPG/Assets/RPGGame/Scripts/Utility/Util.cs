@@ -31,6 +31,19 @@ namespace RPG {
             return Vector3.Distance(selfTransform.position, destination) < offset;
         }
 
+        public static bool IsInSight(Transform selfTransform, Transform target, float sightAnglt, float sightRange) {
+            Vector3 direction = target.position - selfTransform.position;
+            direction.Normalize();
+
+            if (Vector3.Angle(selfTransform.forward, direction) <= sightAnglt) {
+                if (Vector3.Distance(selfTransform.position, target.position) <= sightRange) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public static bool RandomPoint(Vector3 center, float range, out Vector3 result) {
             for (int ix = 0; ix < 30; ++ix) {
                 Vector3 randomPoint = center + Random.insideUnitSphere * range;

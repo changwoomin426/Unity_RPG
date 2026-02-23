@@ -1730,6 +1730,8 @@ GameObject:
   - component: {fileID: 1517938122}
   - component: {fileID: 1517938121}
   - component: {fileID: 1517938120}
+  - component: {fileID: 1517938123}
+  - component: {fileID: 1517938124}
   m_Layer: 0
   m_Name: Monster Chomper
   m_TagString: Untagged
@@ -1809,7 +1811,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517938116}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd0e0d5f9f60f49bdbae251763515cc0, type: 3}
   m_Name: 
@@ -1826,7 +1828,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517938116}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a1740da76a394d24ba3b4cb3156f35f, type: 3}
   m_Name: 
@@ -1847,11 +1849,43 @@ MonoBehaviour:
   _states:
   - {fileID: 1517938121}
   - {fileID: 1517938120}
+  - {fileID: 1517938123}
+  - {fileID: 1517938124}
   _onStateChanged:
     m_PersistentCalls:
       m_Calls: []
   _data: {fileID: 11400000, guid: 0babb6f00a6dc4f2190592ed0bbf45a7, type: 2}
   _level: 1
+--- !u!114 &1517938123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517938116}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083b1916aa37648918af6c474f910f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1517938124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517938116}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9226e949a180345c085308baa39c37e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onAttackBegin:
+    m_PersistentCalls:
+      m_Calls: []
+  _onAttackEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1700444923
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ namespace RPG {
             None = -1,
             Idle,
             Patrol,
+            Chase,
+            Attack,
             Length,
         }
 
@@ -46,6 +48,22 @@ namespace RPG {
 
         private void OnEnable() {
             SetState(EState.Idle);
+        }
+
+        private void Update() {
+            if (_state == EState.Idle || _state == EState.Patrol) {
+                if (Util.IsInSight(_refTransform, PlayerTransform, _data.sightAngle, _data.attackRange)) {
+                    SetState(EState.Chase);
+                    return;
+                }
+            }
+
+            if (_state == EState.Chase || _state == EState.Attack) {
+                if (!Util.IsInSight(_refTransform, PlayerTransform, _data.sightAngle, _data.sightRange)) {
+                    SetState(EState.Idle);
+                    return;
+                }
+            }
         }
 
         public void SetState(EState newState) {
