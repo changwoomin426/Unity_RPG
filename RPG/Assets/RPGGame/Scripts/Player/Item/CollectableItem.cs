@@ -31,7 +31,14 @@ namespace RPG {
                 return;
             }
 
+            InventoryManager.Instance.OnItemCollected(this);
+
+            if (_shouldDeleteAfterCollected) {
+                Destroy(gameObject);
+            }
+
             _onItemCollected?.Invoke();
+            Dialogue.ShowDialogueTextTemporarily(Item.MessageWhenCollected);
         }
     }
 }
