@@ -24,6 +24,7 @@ namespace RPG {
         public MonsterData.LevelData CurrentLevelData { get; private set; }
         public Transform PlayerTransform { get; private set; }
         public bool IsPlayerDead { get { return _targetPlayerStateManager.IsPlayerDead; } }
+        public bool IsForcedToChase { get; private set; }
 
         private void Awake() {
             _data = DataManager.Instance.monsterData;
@@ -78,7 +79,7 @@ namespace RPG {
                 }
             }
 
-            if (_state == EState.Chase || _state == EState.Attack) {
+            if ((_state == EState.Chase || _state == EState.Attack) && !IsForcedToChase) {
                 if (!Util.IsInSight(_refTransform, PlayerTransform, _data.sightAngle, _data.sightRange)) {
                     SetState(EState.Idle);
                     return;
@@ -112,6 +113,11 @@ namespace RPG {
         public void OnMonsterDead() {
             // Util.LogRed("몬스터 죽음.");
             SetState(EState.Dead);
+        }
+
+        public void SetForceToChase() {
+            IsForcedToChase = true;
+            SetState(EState.Chase);
         }
     }
 }

@@ -55,6 +55,7 @@ namespace RPG {
                 WeaponController weaponController = other.GetComponentInChildren<WeaponController>();
                 if (weaponController != null) {
                     weaponController.AttachWeapon(this);
+                    // MonsterSpawner.SpawnMonsters(5, 2);
                 }
 
                 _onItemCollected?.Invoke();
