@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
@@ -10,6 +11,8 @@ namespace RPG {
         private static readonly string playerDataSOFilePath = "Assets/RPGGame/Resources/Data/Player Data.asset";
         private static readonly string monsterLevelDataFilePath = "Assets/RPGGame/Data/Editor/MonsterLevelData.csv";
         private static readonly string monsterDataSOFilePath = "Assets/RPGGame/Resources/Data/Monster Data.asset";
+        private static readonly string questDataFilePath = "Assets/RPGGame/Data/Editor/QuestData.csv";
+        private static readonly string questDataSOFilePath = "Assets/RPGGame/Resources/Data/Quest Data.asset";
 
         private static void CheckAndCreateDataFolder() {
             if (!Directory.Exists(dataFolderPath)) {
@@ -68,6 +71,39 @@ namespace RPG {
             }
 
             EditorUtility.SetDirty(monsterDataSO);
+            AssetDatabase.SaveAssets();
+        }
+
+        [MenuItem("RPGGame/Create Quest Data")]
+        private static void CreateQuestData() {
+            QuestData questDataSO = AssetDatabase.LoadAssetAtPath(questDataSOFilePath, typeof(QuestData)) as QuestData;
+
+            if (questDataSO == null) {
+                questDataSO = ScriptableObject.CreateInstance<QuestData>();
+                AssetDatabase.CreateAsset(questDataSO, questDataSOFilePath);
+            }
+
+            string[] lines = File.ReadAllLines(questDataFilePath);
+            for (int ix = 1; ix < lines.Length; ++ix) {
+                string[] data = lines[ix].Split(',', System.StringSplitOptions.RemoveEmptyEntries);
+                QuestData.Quest quest = new QuestData.Quest();
+                quest.questID = int.Parse(data[0]);
+                quest.questTitle = data[1];
+                quest.type = (QuestData.EType)Enum.Parse(typeof(QuestData.EType), data[2]);
+                quest.targetType = (QuestData.ETargetType)Enum.Parse(typeof(QuestData.ETargetType), data[3]);
+                quest.countToComplete = int.Parse(data[4]);
+                quest.exp = float.Parse(data[5]);
+                quest.questBeginText = data[6];
+                quest.questProgressText = data[7];
+                quest.smallTalk = data[8];
+                quest.startCondition = int.Parse(data[9]);
+                quest.nextQuestID = int.Parse(data[10]);
+                quest.npcID = int.Parse(data[11]);
+                quest.monsterLevel = int.Parse(data[12]);
+                questDataSO._quests.Add(quest);
+            }
+
+            EditorUtility.SetDirty(questDataSO);
             AssetDatabase.SaveAssets();
         }
     }

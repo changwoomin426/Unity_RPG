@@ -6,6 +6,7 @@ namespace RPG {
         public static DataManager Instance { get; private set; } = null;
         public PlayerData playerData { get; private set; }
         public MonsterData monsterData { get; private set; }
+        public QuestData questData { get; private set; }
 
         private void Awake() {
             if (Instance == null) {
@@ -30,6 +31,14 @@ namespace RPG {
 
                 if (monsterData.levels.Count == 0) {
                     Debug.LogError("몬스터의 레벨 데이터가 초기화되지 않았습니다.");
+                }
+            }
+
+            if (questData == null) {
+                questData = Resources.Load<QuestData>("Data/Quest Data");
+
+                if (questData._quests.Count == 0) {
+                    Debug.LogError("퀘스트 데이터가 초기화되지 않았습니다.");
                 }
             }
         }
