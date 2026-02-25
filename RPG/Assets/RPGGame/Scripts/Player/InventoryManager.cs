@@ -46,7 +46,7 @@ namespace RPG {
             return null;
         }
 
-        public List<ItemSlot> GetItem() {
+        public List<ItemSlot> GetItems() {
             List<ItemSlot> itemSlots = new List<ItemSlot>();
 
             foreach (var item in _items) {

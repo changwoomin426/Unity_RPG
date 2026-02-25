@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace RPG {
@@ -29,7 +30,11 @@ namespace RPG {
         private void Update() {
             Movement = _moveAction.ReadValue<Vector2>();
             IsJump = _jumpAction.WasPressedThisFrame();
-            IsAttack = _attackAction.WasPressedThisFrame();
+            // IsAttack = _attackAction.WasPressedThisFrame();
+
+            if (!EventSystem.current.IsPointerOverGameObject()) {
+                IsAttack = _attackAction.WasPressedThisFrame();
+            }
         }
     }
 }
