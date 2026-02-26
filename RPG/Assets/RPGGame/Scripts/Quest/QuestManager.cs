@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace RPG {
+    [DefaultExecutionOrder(-50)]
     public class QuestManager : MonoBehaviour {
         public enum EQuestState {
             None = -1,

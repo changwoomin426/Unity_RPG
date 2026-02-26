@@ -29,7 +29,7 @@ namespace RPG {
         private void LateUpdate() {
             _refTransform.position = Vector3.Lerp(_refTransform.position, _followTarget.position, _movementDelay * Time.deltaTime);
 
-            if (UIInventoryWindow.IsOn) {
+            if (UIInventoryWindow.IsOn || UIQuestWindow.IsOn) {
                 return;
             }
 

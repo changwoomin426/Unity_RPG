@@ -117,6 +117,10 @@ namespace RPG {
 
         public void SetForceToChase() {
             IsForcedToChase = true;
+            QuestItem questItem = GetComponentInChildren<QuestItem>();
+            if (questItem != null) {
+                questItem.SetType(QuestData.EType.Wave);
+            }
             SetState(EState.Chase);
         }
     }

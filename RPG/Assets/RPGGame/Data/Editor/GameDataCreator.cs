@@ -13,6 +13,8 @@ namespace RPG {
         private static readonly string monsterDataSOFilePath = "Assets/RPGGame/Resources/Data/Monster Data.asset";
         private static readonly string questDataFilePath = "Assets/RPGGame/Data/Editor/QuestData.csv";
         private static readonly string questDataSOFilePath = "Assets/RPGGame/Resources/Data/Quest Data.asset";
+        private static readonly string npcDataFilePath = "Assets/RPGGame/Data/Editor/NPCData.csv";
+        private static readonly string npcDataSOFilePath = "Assets/RPGGame/Resources/Data/NPC Data.asset";
 
         private static void CheckAndCreateDataFolder() {
             if (!Directory.Exists(dataFolderPath)) {
@@ -106,5 +108,30 @@ namespace RPG {
             EditorUtility.SetDirty(questDataSO);
             AssetDatabase.SaveAssets();
         }
+
+        [MenuItem("RPGGame/Create NPC Data")]
+        private static void CreateNPCData() {
+            NPCData npcDataSO = AssetDatabase.LoadAssetAtPath(npcDataFilePath, typeof(NPCData)) as NPCData;
+
+            if (npcDataSO == null) {
+                npcDataSO = ScriptableObject.CreateInstance<NPCData>();
+                AssetDatabase.CreateAsset(npcDataSO, npcDataSOFilePath);
+            }
+
+            string[] lines = File.ReadAllLines(npcDataFilePath);
+            npcDataSO._attributes = new List<NPCData.Attribute>();
+
+            for (int ix = 1; ix < lines.Length; ++ix) {
+                string[] data = lines[ix].Split(',', System.StringSplitOptions.RemoveEmptyEntries);
+                NPCData.Attribute attribute = new NPCData.Attribute();
+                attribute.id = int.Parse(data[0]);
+                attribute.name = data[1];
+                attribute.interactionSight = float.Parse(data[2]);
+                npcDataSO._attributes.Add(attribute);
+            }
+
+            EditorUtility.SetDirty(npcDataSO);
+            AssetDatabase.SaveAssets();
     }
+}
 }
