@@ -113,6 +113,10 @@ namespace RPG {
         public void OnMonsterDead() {
             // Util.LogRed("몬스터 죽음.");
             SetState(EState.Dead);
+            PlayerLevelController playerLevelController = FindFirstObjectByType<PlayerLevelController>();
+            if (playerLevelController != null) {
+                playerLevelController.GainExp(CurrentLevelData.gainExp);
+            }
         }
 
         public void SetForceToChase() {

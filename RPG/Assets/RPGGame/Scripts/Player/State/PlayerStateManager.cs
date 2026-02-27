@@ -151,6 +151,18 @@ namespace RPG {
         public void OnPlayerDead() {
             // Util.LogRed("플레이어 죽음");
             SetState(EState.Dead);
+
+            Dialogue.ShowDialogueTextTemporarily("엘렌이 전사했습니다. \n게임을 다시 시작해 마을을 구해주세요!", 5f);
+        }
+
+        public void OnPlayerLevelUp(int newLevel) {
+            _level = newLevel;
+            CurrentLevelData = DataManager.Instance.playerData.levels[_level - 1];
+
+            HPController hpController = GetComponentInChildren<HPController>();
+            if (hpController != null) {
+                hpController.SetMaxHP(CurrentLevelData.maxHP);
+            }
         }
     }
 }

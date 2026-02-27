@@ -94,6 +94,11 @@ namespace RPG {
 
                 _onQuestCompleted?.Invoke(_currentQuestID);
             }
+
+            PlayerLevelController playerLevelController = FindFirstObjectByType<PlayerLevelController>();
+            if (playerLevelController != null) {
+                playerLevelController.GainExp(CurrentQuest.exp);
+            }
         }
 
         public EQuestState CheckNPCState(int npcID) {

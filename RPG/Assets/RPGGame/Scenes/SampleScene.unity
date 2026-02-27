@@ -1620,6 +1620,7 @@ Transform:
   - {fileID: 1191367286}
   - {fileID: 1388636416}
   - {fileID: 1954263047}
+  - {fileID: 874777466}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &366270412
@@ -4108,6 +4109,70 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400544, guid: e8400fd1295a3844bb6e6039b2b44d4f, type: 3}
   m_PrefabInstance: {fileID: 349867768}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &874777465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 874777466}
+  - component: {fileID: 874777467}
+  m_Layer: 0
+  m_Name: Level Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &874777466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874777465}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 366270410}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &874777467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874777465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37be0f3809b04972b33b6d985e503b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _level: 1
+  _currentExp: 0
+  _onLevelUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 366270416}
+        m_TargetAssemblyTypeName: RPG.PlayerStateManager, Assembly-CSharp
+        m_MethodName: OnPlayerLevelUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _levelGaugeText: {fileID: 1876106036}
+  _expBar: {fileID: 2117519139}
+  _expGaugeText: {fileID: 771029352}
 --- !u!4 &923814213 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400570, guid: e8400fd1295a3844bb6e6039b2b44d4f, type: 3}
@@ -8762,7 +8827,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 705507995}
   - {fileID: 1027005629}
-  - {fileID: 366270410}
   - {fileID: 1740260003}
   - {fileID: 1337236524}
   - {fileID: 297648601}
@@ -8778,3 +8842,4 @@ SceneRoots:
   - {fileID: 542484994}
   - {fileID: 1468281023}
   - {fileID: 1229459985}
+  - {fileID: 366270410}
