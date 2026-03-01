@@ -4109,6 +4109,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400544, guid: e8400fd1295a3844bb6e6039b2b44d4f, type: 3}
   m_PrefabInstance: {fileID: 349867768}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &868015298 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1551396163479464152, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
+  m_PrefabInstance: {fileID: 4120423987623966747}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &874777465
 GameObject:
   m_ObjectHideFlags: 0
@@ -5933,6 +5938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chomperMonsterPrefab: {fileID: 4425905277057537247, guid: 4ed29d46df4bb4228bf04d6cd31cc177, type: 3}
+  _grenadierMonster: {fileID: 868015298}
   _spawnPositions: []
   _monsterWaves:
   - count: 10
@@ -8764,6 +8770,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07b142252e6cb4ae19b9f1221530ee0e, type: 3}
+--- !u!1001 &4120423987623966747
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 181364671467763102, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 181364671467763102, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181364671467763102, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181364671467763102, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 181364671467763102, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181364671467763102, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181364671467763102, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181364671467763102, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181364671467763102, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181364671467763102, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551396163479464152, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
+      propertyPath: m_Name
+      value: Monster Grenadier
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551396163479464152, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0491cfcefbb634e48951789e5b88c412, type: 3}
 --- !u!1001 &8099794698999542480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8843,3 +8910,4 @@ SceneRoots:
   - {fileID: 1468281023}
   - {fileID: 1229459985}
   - {fileID: 366270410}
+  - {fileID: 4120423987623966747}

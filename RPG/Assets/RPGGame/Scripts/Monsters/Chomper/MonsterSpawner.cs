@@ -15,6 +15,7 @@ namespace RPG {
 
         private static MonsterSpawner instance = null;
         [SerializeField] private GameObject _chomperMonsterPrefab;
+        [SerializeField] private GameObject _grenadierMonster;
         [SerializeField] private Transform[] _spawnPositions;
         [SerializeField] private MonsterWave[] _monsterWaves;
         [SerializeField] private bool _isWaveStarted = false;
@@ -93,6 +94,10 @@ namespace RPG {
             int monsterLevel = instance._monsterWaves[instance._currentWaveID].monsterLevel;
             instance.StartCoroutine(SpawnMonstersWithDelay(3f, count, monsterLevel));
             Dialogue.ShowDialogueTextTemporarily(instance._monsterWaves[instance._currentWaveID].spawnMessage);
+        }
+
+        public static void SpawnGrenadier() {
+            instance._grenadierMonster.SetActive(true);
         }
     }
 }

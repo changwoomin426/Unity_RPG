@@ -4,7 +4,7 @@ namespace RPG {
     [RequireComponent(typeof(AudioSource))]
     public class AudioPlayer : MonoBehaviour {
         [SerializeField] private bool _isRandomizePitch = false;
-        [SerializeField] private float _pitchRandomRange = 2.0f;
+        [SerializeField] private float _pitchRandomRange = 0.2f;
         [SerializeField] private float _playDelay = 0f;
         [SerializeField] private AudioClip[] _audioClips;
 

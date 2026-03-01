@@ -130,6 +130,8 @@ namespace RPG {
             } else if (CurrentQuest.type == QuestData.EType.Wave &&
                         CurrentQuest.targetType == QuestData.ETargetType.Chomper) {
                 MonsterSpawner.StartMonsterWave();
+            } else if (CurrentQuest.type == QuestData.EType.Kill && CurrentQuest.targetType == QuestData.ETargetType.Grenadier) {
+                MonsterSpawner.SpawnGrenadier();
             }
         }
 

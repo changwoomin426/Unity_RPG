@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ namespace RPG {
         private static readonly string questDataSOFilePath = "Assets/RPGGame/Resources/Data/Quest Data.asset";
         private static readonly string npcDataFilePath = "Assets/RPGGame/Data/Editor/NPCData.csv";
         private static readonly string npcDataSOFilePath = "Assets/RPGGame/Resources/Data/NPC Data.asset";
+        private static readonly string grenadierLevelDataFilePath = "Assets/RPGGame/Data/Editor/GrenadierLevelData.csv";
+        private static readonly string grenadierDataSOFilePath = "Assets/RPGGame/Resources/Data/Grenadier Monster Data.asset";
 
         private static void CheckAndCreateDataFolder() {
             if (!Directory.Exists(dataFolderPath)) {
@@ -132,6 +135,34 @@ namespace RPG {
 
             EditorUtility.SetDirty(npcDataSO);
             AssetDatabase.SaveAssets();
+        }
+
+        [MenuItem("RPGGame/Create Grenadier Monster Data")]
+        private static void CreateGrenadierMonsterData() {
+            MonsterData grenadierDataSO = AssetDatabase.LoadAssetAtPath(grenadierDataSOFilePath, typeof(MonsterData)) as MonsterData;
+
+            if (grenadierDataSO == null) {
+                grenadierDataSO = ScriptableObject.CreateInstance<MonsterData>();
+                AssetDatabase.CreateAsset(grenadierDataSO, grenadierDataSOFilePath);
+            }
+
+            List<string> lines = File.ReadLines(grenadierLevelDataFilePath).ToList();
+            grenadierDataSO.levels = new List<MonsterData.LevelData>();
+
+            for (int ix = 1; ix < lines.Count; ++ix) {
+                string[] data = lines[ix].Split(',', System.StringSplitOptions.RemoveEmptyEntries);
+                MonsterData.LevelData levelData = new MonsterData.LevelData();
+                levelData.level = int.Parse(data[0]);
+                levelData.maxHP = float.Parse(data[1]);
+                levelData.attack = float.Parse(data[2]);
+                levelData.rangeAttack = float.Parse(data[3]);
+                levelData.defense = float.Parse(data[4]);
+                levelData.gainExp = float.Parse(data[5]);
+                grenadierDataSO.levels.Add(levelData);
+            }
+
+            EditorUtility.SetDirty(grenadierDataSO);
+            AssetDatabase.SaveAssets();
+        }
     }
-}
 }
